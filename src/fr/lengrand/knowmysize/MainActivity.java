@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +18,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
+	private static final String TAG = "MainActivity";
 
 	// This is the Adapter being used to display the list's data
 	SimpleCursorAdapter mAdapter;
@@ -28,16 +30,16 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		Button add = (Button) findViewById(R.id.add_button);
 		add.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), FriendAdder.class);
-                startActivityForResult(myIntent, 0);
-            }
+			public void onClick(View view) {
+				Intent myIntent = new Intent(view.getContext(), FriendAdder.class);
+				startActivityForResult(myIntent, 0);
+			}
 
-        });
-		
+		});
+
 		ArrayAdapter<String> adapter =
 				new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends);
 		ListView list = (ListView) findViewById(R.id.friendList);
@@ -74,7 +76,7 @@ public class MainActivity extends Activity {
 			}
 		}
 		else if(v.getId() == R.id.add_button){
-			
+
 		}
 		else{
 			System.out.println(" Unknown View!!!");
@@ -99,19 +101,50 @@ public class MainActivity extends Activity {
 			System.out.println("Unexpected behaviour ! What do ? ?"); //FIXME : Log instead, or message pop up
 		}
 
-//		Button myButton = (Button)findViewById(R.id.add_button);
-//		String myStr = "";
-//		for (int i = 0; i < friends.length; i++) {
-//			myStr += friends[i];
-//			
-//		}
-//		myButton.setText(myStr);
+		//		Button myButton = (Button)findViewById(R.id.add_button);
+		//		String myStr = "";
+		//		for (int i = 0; i < friends.length; i++) {
+		//			myStr += friends[i];
+		//			
+		//		}
+		//		myButton.setText(myStr);
 
 		ListView list = (ListView) findViewById(R.id.friendList);
-		 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends); 
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends); 
 		list.setAdapter(adapter); // updates list of friends
-		
+
 		return true;
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent pData) 
+	{
+		if (resultCode == Activity.RESULT_OK ) 
+		{
+			String new_friend = pData.getExtras().getString( FriendAdder.RES_FRIEND );
+
+			Log.v( TAG, "Retrieved Value zData is "+ new_friend );
+
+//			Button myButton = (Button)findViewById(R.id.add_button);
+//			myButton.setText(new_friend);
+
+			ListView list = (ListView) findViewById(R.id.friendList);
+			friends = addItem(new_friend);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends); 
+			list.setAdapter(adapter); // updates list of friends
+
+		}
+		else{
+			Log.v( TAG, "Problem : Unexpected requestCode");
+		}
+	}
+
+	private String[] addItem(String new_friend) {
+		ArrayList<String> temp = new ArrayList<String>();
+		temp.add(new_friend); // Adds new friend in first position
+		for (int i = 0; i < friends.length; i++) {
+			temp.add(friends[i]);
+		}
+		return temp.toArray(new String[temp.size()]);
 	}
 
 	private String[] removeItem(String friend) {
