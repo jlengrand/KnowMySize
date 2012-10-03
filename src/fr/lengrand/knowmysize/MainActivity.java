@@ -3,6 +3,7 @@ package fr.lengrand.knowmysize;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.ContextMenu;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
@@ -26,7 +28,16 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		Button add = (Button) findViewById(R.id.add_button);
+		add.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), FriendAdder.class);
+                startActivityForResult(myIntent, 0);
+            }
 
+        });
+		
 		ArrayAdapter<String> adapter =
 				new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends);
 		ListView list = (ListView) findViewById(R.id.friendList);
@@ -51,8 +62,7 @@ public class MainActivity extends Activity {
 	}
 
 	@Override
-	public void onCreateContextMenu(ContextMenu menu, View v,
-			ContextMenuInfo menuInfo) {
+	public void onCreateContextMenu(ContextMenu menu, View v, ContextMenuInfo menuInfo) {
 		if (v.getId()==R.id.friendList) { // make sure the event comes from the list
 
 			AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
@@ -62,6 +72,12 @@ public class MainActivity extends Activity {
 			for (int i = 0; i<menuItems.length; i++) {
 				menu.add(Menu.NONE, i, i, menuItems[i]); // set items in List
 			}
+		}
+		else if(v.getId() == R.id.add_button){
+			
+		}
+		else{
+			System.out.println(" Unknown View!!!");
 		}
 	}
 

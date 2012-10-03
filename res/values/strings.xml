@@ -9,4 +9,8 @@
         <item>Delete</item>
     </string-array>
 
+    <string name="friend_name">Name of your friend :</string>
+    <string name="ok">Ok!</string>
+    <string name="title_activity_friend_adder">Add a new friend</string>
+
 </resources>
