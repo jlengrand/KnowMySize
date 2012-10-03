@@ -3,11 +3,8 @@ package fr.lengrand.knowmysize;
 import java.util.ArrayList;
 
 import android.app.Activity;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SimpleCursorAdapter;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,8 +12,6 @@ import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 public class MainActivity extends Activity {
@@ -43,9 +38,6 @@ public class MainActivity extends Activity {
 	@Override
 	public void onResume(){
 		super.onResume();
-		//mAdapter.notifyDataSetChanged();
-		ListView list = (ListView) findViewById(R.id.friendList);
-		((BaseAdapter) list.getAdapter()).notifyDataSetChanged();
 	}
 
 	@Override
@@ -88,24 +80,27 @@ public class MainActivity extends Activity {
 			friends = removeItem(listItemName);
 		}
 		else{
-			System.out.println("Unexpected behaviour ! What do ? ?"); //FIXME
+			System.out.println("Unexpected behaviour ! What do ? ?"); //FIXME : Log instead, or message pop up
 		}
 
-		//TextView text = (TextView)findViewById(R.id.footer);
-		//text.setText(String.format("Selected %s for item %s", menuItemName, listItemName));
-
-		//Button myButton = (Button)findViewById(R.id.add_button);
-		//myButton.setText(menuItemName + " " + listItemName);
+//		Button myButton = (Button)findViewById(R.id.add_button);
+//		String myStr = "";
+//		for (int i = 0; i < friends.length; i++) {
+//			myStr += friends[i];
+//			
+//		}
+//		myButton.setText(myStr);
 
 		ListView list = (ListView) findViewById(R.id.friendList);
-		((BaseAdapter) list.getAdapter()).notifyDataSetChanged();
-
+		 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends); 
+		list.setAdapter(adapter); // updates list of friends
+		
 		return true;
 	}
 
 	private String[] removeItem(String friend) {
 		//FIXME : Checks here
-		ArrayList<String> temp = null;
+		ArrayList<String> temp = new ArrayList<String>();
 		for (int i = 0; i < friends.length; i++) {
 			if(friends[i] != friend){
 				temp.add(friends[i]);
