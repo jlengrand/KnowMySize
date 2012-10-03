@@ -5,4 +5,8 @@
     <string name="title_activity_main">KnowMySize</string>
     <string name="main_button">+ Add</string>
 
+    <string-array name="home_list_menu">
+        <item>Delete</item>
+    </string-array>
+
 </resources>
