@@ -118,11 +118,10 @@ public class MainActivity extends Activity {
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent pData) 
 	{
-		if (resultCode == Activity.RESULT_OK ) 
-		{
+		if (resultCode == Activity.RESULT_OK ) {
 			String new_friend = pData.getExtras().getString( FriendAdder.RES_FRIEND );
 
-			Log.v( TAG, "Retrieved Value zData is "+ new_friend );
+			//Log.v( TAG, "Retrieved Value zData is "+ new_friend );
 
 //			Button myButton = (Button)findViewById(R.id.add_button);
 //			myButton.setText(new_friend);
