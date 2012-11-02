@@ -65,8 +65,8 @@ public class FriendsProvider {
 	 * Returns an empty list if user has no friend
 	 */
 	public String[] getFriends(){
-		Log.v(TAG, "HERE IS YOUR FILELIST");
-		Log.v(TAG, context.getApplicationContext().fileList().toString());
+		//Log.v(TAG, "HERE IS YOUR FILELIST");
+		//Log.v(TAG, context.getApplicationContext().fileList().toString());
 		return context.getApplicationContext().fileList();
 	}
 	

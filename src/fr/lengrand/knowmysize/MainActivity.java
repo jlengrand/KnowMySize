@@ -28,7 +28,7 @@ public class MainActivity extends Activity {
 	static String[] friends = new String[0];// {"Paul", "Bob", "Jacques"}; 	// These are the Contacts rows that we will retrieve
 
 	FriendsProvider fp;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -43,9 +43,9 @@ public class MainActivity extends Activity {
 
 		});
 
-		 fp = new FriendsProvider(this.getApplicationContext());
-		//friends = fp.getFriends();		// Loads already known friends
-		
+		fp = new FriendsProvider(this.getApplicationContext());
+		friends = fp.getFriends();		// Loads already known friends
+
 		ArrayAdapter<String> adapter =
 				new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends);
 		ListView list = (ListView) findViewById(R.id.friendList);
@@ -134,13 +134,17 @@ public class MainActivity extends Activity {
 
 			//Log.v( TAG, "Retrieved Value zData is "+ new_friend );
 
-//			Button myButton = (Button)findViewById(R.id.add_button);
-//			myButton.setText(new_friend);
+			//			Button myButton = (Button)findViewById(R.id.add_button);
+			//			myButton.setText(new_friend);
 
 			ListView list = (ListView) findViewById(R.id.friendList);
-			//fp.addFriend(new_friend);
+			try {
+				fp.addFriend(new_friend);
+			} catch (IOException e) {
+				Log.e(TAG, "Impossible to create new friend : " + new_friend + "!");
+			}
 			System.out.println("plop");
-			//friends = fp.getFriends();		// Reloads already known friends
+			friends = fp.getFriends();		// Reloads already known friends
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends); 
 			list.setAdapter(adapter); // updates list of friends on display
 
@@ -150,23 +154,23 @@ public class MainActivity extends Activity {
 		}
 	}
 
-//	private String[] addItem(String new_friend) {
-//		ArrayList<String> temp = new ArrayList<String>();
-//		temp.add(new_friend); // Adds new friend in first position
-//		for (int i = 0; i < friends.length; i++) {
-//			temp.add(friends[i]);
-//		}
-//		return temp.toArray(new String[temp.size()]);
-//	}
-//
-//	private String[] removeItem(String friend) {
-//		//FIXME : Checks here
-//		ArrayList<String> temp = new ArrayList<String>();
-//		for (int i = 0; i < friends.length; i++) {
-//			if(friends[i] != friend){
-//				temp.add(friends[i]);
-//			}
-//		}
-//		return temp.toArray(new String[temp.size()]);
-//	}
+	//	private String[] addItem(String new_friend) {
+	//		ArrayList<String> temp = new ArrayList<String>();
+	//		temp.add(new_friend); // Adds new friend in first position
+	//		for (int i = 0; i < friends.length; i++) {
+	//			temp.add(friends[i]);
+	//		}
+	//		return temp.toArray(new String[temp.size()]);
+	//	}
+	//
+	//	private String[] removeItem(String friend) {
+	//		//FIXME : Checks here
+	//		ArrayList<String> temp = new ArrayList<String>();
+	//		for (int i = 0; i < friends.length; i++) {
+	//			if(friends[i] != friend){
+	//				temp.add(friends[i]);
+	//			}
+	//		}
+	//		return temp.toArray(new String[temp.size()]);
+	//	}
 }
