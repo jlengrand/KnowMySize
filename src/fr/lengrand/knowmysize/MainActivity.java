@@ -1,8 +1,10 @@
 package fr.lengrand.knowmysize;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -20,13 +22,13 @@ import android.widget.ListView;
 public class MainActivity extends Activity {
 	private static final String TAG = "MainActivity";
 
-	// This is the Adapter being used to display the list's data
-	SimpleCursorAdapter mAdapter;
+	SimpleCursorAdapter mAdapter; 	// This is the Adapter being used to display the list's data
 
-	// These are the Contacts rows that we will retrieve
 	//static ArrayList<String> friends = new ArrayList<String>();
-	static String[] friends = new String[0];// {"Paul", "Bob", "Jacques"};
+	static String[] friends = new String[0];// {"Paul", "Bob", "Jacques"}; 	// These are the Contacts rows that we will retrieve
 
+	FriendsProvider fp;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,6 +43,9 @@ public class MainActivity extends Activity {
 
 		});
 
+		 fp = new FriendsProvider(this.getApplicationContext());
+		//friends = fp.getFriends();		// Loads already known friends
+		
 		ArrayAdapter<String> adapter =
 				new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends);
 		ListView list = (ListView) findViewById(R.id.friendList);
@@ -96,7 +101,11 @@ public class MainActivity extends Activity {
 		String listItemName = friends[info.position];
 
 		if(menuItemName == menuItems[0]){ // delete
-			friends = removeItem(listItemName);
+			//friends = removeItem(listItemName);
+			//friends = fp.getFriends();		// Loads already known friends
+			//XXX: add friend removal capability
+			Log.e( TAG, "I should remove someone here!");
+
 		}
 		else{
 			System.out.println("Unexpected behaviour ! What do ? ?"); //FIXME : Log instead, or message pop up
@@ -111,6 +120,7 @@ public class MainActivity extends Activity {
 		//		myButton.setText(myStr);
 
 		ListView list = (ListView) findViewById(R.id.friendList);
+		//friends = fp.getFriends();		// reLoads already known friends
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends); 
 		list.setAdapter(adapter); // updates list of friends
 
@@ -128,9 +138,11 @@ public class MainActivity extends Activity {
 //			myButton.setText(new_friend);
 
 			ListView list = (ListView) findViewById(R.id.friendList);
-			friends = addItem(new_friend);
+			//fp.addFriend(new_friend);
+			System.out.println("plop");
+			//friends = fp.getFriends();		// Reloads already known friends
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends); 
-			list.setAdapter(adapter); // updates list of friends
+			list.setAdapter(adapter); // updates list of friends on display
 
 		}
 		else{
@@ -138,23 +150,23 @@ public class MainActivity extends Activity {
 		}
 	}
 
-	private String[] addItem(String new_friend) {
-		ArrayList<String> temp = new ArrayList<String>();
-		temp.add(new_friend); // Adds new friend in first position
-		for (int i = 0; i < friends.length; i++) {
-			temp.add(friends[i]);
-		}
-		return temp.toArray(new String[temp.size()]);
-	}
-
-	private String[] removeItem(String friend) {
-		//FIXME : Checks here
-		ArrayList<String> temp = new ArrayList<String>();
-		for (int i = 0; i < friends.length; i++) {
-			if(friends[i] != friend){
-				temp.add(friends[i]);
-			}
-		}
-		return temp.toArray(new String[temp.size()]);
-	}
+//	private String[] addItem(String new_friend) {
+//		ArrayList<String> temp = new ArrayList<String>();
+//		temp.add(new_friend); // Adds new friend in first position
+//		for (int i = 0; i < friends.length; i++) {
+//			temp.add(friends[i]);
+//		}
+//		return temp.toArray(new String[temp.size()]);
+//	}
+//
+//	private String[] removeItem(String friend) {
+//		//FIXME : Checks here
+//		ArrayList<String> temp = new ArrayList<String>();
+//		for (int i = 0; i < friends.length; i++) {
+//			if(friends[i] != friend){
+//				temp.add(friends[i]);
+//			}
+//		}
+//		return temp.toArray(new String[temp.size()]);
+//	}
 }

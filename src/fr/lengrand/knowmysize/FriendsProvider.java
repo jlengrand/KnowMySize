@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import android.content.Context;
 import android.provider.OpenableColumns;
+import android.util.Log;
 
 /**
  * @author jll
@@ -14,13 +15,8 @@ import android.provider.OpenableColumns;
  *
  */
 public class FriendsProvider {
-	//String FILENAME = "hello_file";
-	//String string = "hello world!";
-
-	//FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
-	//fos.write(string.getBytes());
-	//fos.close();
-	Context context;
+	private static final String TAG = "MainActivity";
+	private Context context;
 	
 	public static String extension = ".xml";
 	public static String marker = "f_";
@@ -69,6 +65,8 @@ public class FriendsProvider {
 	 * Returns an empty list if user has no friend
 	 */
 	public String[] getFriends(){
+		Log.v(TAG, "HERE IS YOUR FILELIST");
+		Log.v(TAG, context.getApplicationContext().fileList().toString());
 		return context.getApplicationContext().fileList();
 	}
 	
