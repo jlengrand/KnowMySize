@@ -24,7 +24,8 @@ public class MainActivity extends Activity {
 	SimpleCursorAdapter mAdapter;
 
 	// These are the Contacts rows that we will retrieve
-	static String[] friends = new String[] {"Paul", "Bob", "Jacques"};
+	//static ArrayList<String> friends = new ArrayList<String>();
+	static String[] friends = new String[0];// {"Paul", "Bob", "Jacques"};
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
