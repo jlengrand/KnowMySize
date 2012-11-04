@@ -39,10 +39,14 @@ public class FriendsProvider {
 	 * @param name
 	 * @return
 	 */
-	private String xml_filename(String name){
+	private String to_xml_filename(String name){
 		return marker + format(name) + extension;
 	}
 	
+	private String to_friend_name(String name){
+		String out = name.replace(marker, "");
+		return out.replace(extension, "");
+	}
 	
 	/** Adds a new friend to the list in Main Activity.
 	 *  Should be triggered by FriendAdder activity
@@ -52,7 +56,7 @@ public class FriendsProvider {
 	 * @throws IOException
 	 */
 	public void addFriend(String name) throws IOException{
-		String filename = xml_filename(name);
+		String filename = to_xml_filename(name);
 		//TODO: Check if file already exist here
 		FileOutputStream fos =  context.getApplicationContext().openFileOutput(filename, Context.MODE_PRIVATE);
 		fos.close(); // should have created the file
@@ -65,9 +69,14 @@ public class FriendsProvider {
 	 * Returns an empty list if user has no friend
 	 */
 	public String[] getFriends(){
-		//Log.v(TAG, "HERE IS YOUR FILELIST");
-		//Log.v(TAG, context.getApplicationContext().fileList().toString());
-		return context.getApplicationContext().fileList();
+		String[] friends = context.getApplicationContext().fileList();
+		
+		// xml filename to friendly name. Parses XML later on
+		String[] new_friends = new String[friends.length];
+		for(int i = 0; i < friends.length; i++){
+			new_friends[i] = to_friend_name(friends[i]);
+		}
+		return new_friends;
 	}
 	
 }

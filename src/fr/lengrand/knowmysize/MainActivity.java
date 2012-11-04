@@ -24,10 +24,9 @@ public class MainActivity extends Activity {
 
 	SimpleCursorAdapter mAdapter; 	// This is the Adapter being used to display the list's data
 
-	//static ArrayList<String> friends = new ArrayList<String>();
-	static String[] friends = new String[0];// {"Paul", "Bob", "Jacques"}; 	// These are the Contacts rows that we will retrieve
+	static String[] friends = new String[0];// These are the Contacts rows that we will retrieve
 
-	FriendsProvider fp;
+	FriendsProvider fp; // used to access the data layer
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -63,10 +62,6 @@ public class MainActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.activity_main, menu);
 		return true;
-	}
-
-	public void SayHelloAgain(View view){
-		System.out.println("Hello again !");
 	}
 
 	@Override
@@ -108,7 +103,7 @@ public class MainActivity extends Activity {
 
 		}
 		else{
-			System.out.println("Unexpected behaviour ! What do ? ?"); //FIXME : Log instead, or message pop up
+			Log.e(TAG, "Unexpected behaviour ! What do ? ?"); //FIXME : Log instead, or message pop up
 		}
 
 		//		Button myButton = (Button)findViewById(R.id.add_button);
