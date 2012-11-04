@@ -8,6 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * View displayed when user press Add in Main activity.
+ * Used to create a new friend in the base.
+ * Returns name of the friend to main activity, that will create the actual friend in data layer
+ * @author jll
+ *
+ */
 public class FriendAdder extends Activity {
     private static final String TAG = "FriendAdder";
     

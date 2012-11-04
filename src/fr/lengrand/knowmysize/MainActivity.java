@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
 
 		}
 		else{
-			System.out.println(" Unknown View!!!");
+			Log.e(TAG, " Unknown View requested in onCreateContextMenu!!!");
 		}
 	}
 
@@ -91,28 +91,21 @@ public class MainActivity extends Activity {
 
 		int menuItemIndex = item.getItemId(); // get selected item
 
-		String[] menuItems = getResources().getStringArray(R.array.home_list_menu); // loads menu elements
+		String[] menuItems = getResources().getStringArray(R.array.home_list_menu); // loads menu elements for long press
 		String menuItemName = menuItems[menuItemIndex];
 		String listItemName = friends[info.position];
 
 		if(menuItemName == menuItems[0]){ // delete
+			fp.deleteFriend(listItemName);		// reLoads already known friends
 			//friends = removeItem(listItemName);
 			//friends = fp.getFriends();		// Loads already known friends
 			//XXX: add friend removal capability
-			Log.e( TAG, "I should remove someone here!");
+			//Log.e( TAG, "I should remove someone here!");
 
 		}
 		else{
 			Log.e(TAG, "Unexpected behaviour ! What do ? ?"); //FIXME : Log instead, or message pop up
 		}
-
-		//		Button myButton = (Button)findViewById(R.id.add_button);
-		//		String myStr = "";
-		//		for (int i = 0; i < friends.length; i++) {
-		//			myStr += friends[i];
-		//			
-		//		}
-		//		myButton.setText(myStr);
 
 		ListView list = (ListView) findViewById(R.id.friendList);
 		//friends = fp.getFriends();		// reLoads already known friends

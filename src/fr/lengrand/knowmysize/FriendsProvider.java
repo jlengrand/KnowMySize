@@ -3,6 +3,7 @@ package fr.lengrand.knowmysize;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 
 import android.content.Context;
 import android.provider.OpenableColumns;
@@ -62,6 +63,23 @@ public class FriendsProvider {
 		fos.close(); // should have created the file
 	}
 	
+	/** Removes a new friend of the list in Main Activity.
+	 *  Should be triggered by FriendAdder activity
+	 *  
+	 *  WARNING : The actual xml file will be removed! (ans data consequently be lost)
+	 *  Takes care of spaces, but not special characters
+	 * @param name the name of the friend to remove
+	 * @throws IOException
+	 */
+	public void deleteFriend(String name){
+		String filename = to_xml_filename(name);
+		Boolean res =  context.getApplicationContext().deleteFile(filename);
+		
+		Log.d(TAG, "removing friend :" + filename + "," + res + " !");
+		if (!res){
+			Log.e(TAG, "unable to remove friend :" + filename + "!");
+		}
+	}
 	
 	/**
 	 * Returns a list of Strings corresponding to all the friends
