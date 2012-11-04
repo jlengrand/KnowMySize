@@ -97,14 +97,13 @@ public class MainActivity extends Activity {
 
 		if(menuItemName == menuItems[0]){ // delete
 			fp.deleteFriend(listItemName);		// delete corresponding friend
-
 		}
 		else{
-			Log.e(TAG, "Unexpected behaviour ! What do ? ?"); //FIXME : Log instead, or message pop up
+			Log.e(TAG, "Unexpected behaviour ! What do ? ?");
 		}
 
 		ListView list = (ListView) findViewById(R.id.friendList);
-		friends = fp.getFriends();		// reLoads already known friends
+		friends = fp.getFriends();		// reloads already known friends
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends); 
 		list.setAdapter(adapter); // updates list of friends
 
@@ -115,19 +114,13 @@ public class MainActivity extends Activity {
 	{
 		if (resultCode == Activity.RESULT_OK ) {
 			String new_friend = pData.getExtras().getString( FriendAdder.RES_FRIEND );
-
-			//Log.v( TAG, "Retrieved Value zData is "+ new_friend );
-
-			//			Button myButton = (Button)findViewById(R.id.add_button);
-			//			myButton.setText(new_friend);
-
+			
 			ListView list = (ListView) findViewById(R.id.friendList);
 			try {
 				fp.addFriend(new_friend);
 			} catch (IOException e) {
 				Log.e(TAG, "Impossible to create new friend : " + new_friend + "!");
 			}
-			System.out.println("plop");
 			friends = fp.getFriends();		// Reloads already known friends
 			ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends); 
 			list.setAdapter(adapter); // updates list of friends on display
@@ -137,24 +130,4 @@ public class MainActivity extends Activity {
 			Log.v( TAG, "Problem : Unexpected requestCode");
 		}
 	}
-
-	//	private String[] addItem(String new_friend) {
-	//		ArrayList<String> temp = new ArrayList<String>();
-	//		temp.add(new_friend); // Adds new friend in first position
-	//		for (int i = 0; i < friends.length; i++) {
-	//			temp.add(friends[i]);
-	//		}
-	//		return temp.toArray(new String[temp.size()]);
-	//	}
-	//
-	//	private String[] removeItem(String friend) {
-	//		//FIXME : Checks here
-	//		ArrayList<String> temp = new ArrayList<String>();
-	//		for (int i = 0; i < friends.length; i++) {
-	//			if(friends[i] != friend){
-	//				temp.add(friends[i]);
-	//			}
-	//		}
-	//		return temp.toArray(new String[temp.size()]);
-	//	}
 }
