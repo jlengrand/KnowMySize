@@ -96,11 +96,7 @@ public class MainActivity extends Activity {
 		String listItemName = friends[info.position];
 
 		if(menuItemName == menuItems[0]){ // delete
-			fp.deleteFriend(listItemName);		// reLoads already known friends
-			//friends = removeItem(listItemName);
-			//friends = fp.getFriends();		// Loads already known friends
-			//XXX: add friend removal capability
-			//Log.e( TAG, "I should remove someone here!");
+			fp.deleteFriend(listItemName);		// delete corresponding friend
 
 		}
 		else{
@@ -108,7 +104,7 @@ public class MainActivity extends Activity {
 		}
 
 		ListView list = (ListView) findViewById(R.id.friendList);
-		//friends = fp.getFriends();		// reLoads already known friends
+		friends = fp.getFriends();		// reLoads already known friends
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, friends); 
 		list.setAdapter(adapter); // updates list of friends
 
