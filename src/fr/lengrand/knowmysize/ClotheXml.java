@@ -17,6 +17,8 @@ import org.simpleframework.xml.Root;
  *   	<category>1</category>
  *   	<size>42</size>
  *	</clothe>
+ *
+ * FIXME: I have to give more thoughts into that 
  */
 
 @Root (name="clothe")

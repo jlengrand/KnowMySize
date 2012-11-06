@@ -11,6 +11,7 @@ import java.util.ArrayList;
  * @author jll
  *
  */
+
 public class Friend {
 
 	private static int unknown = 0;
