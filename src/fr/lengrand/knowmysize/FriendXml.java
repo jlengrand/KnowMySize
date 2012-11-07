@@ -42,7 +42,7 @@ public class FriendXml {
 	@Element(name="age")
 	private int age;
 
-	private ArrayList<Clothe> clothes; // XXX: how to handle that?
+	private ArrayList<FriendClotheXML> clothes; // XXX: how to handle that?
 	
 	public FriendXml() {
 		super();
@@ -66,4 +66,31 @@ public class FriendXml {
 		return this.age;
 	}
 	
+}
+
+@Root
+class FriendClotheXML {
+
+   @Attribute(name="id")
+   private int id;
+
+   @Element
+   private int size;
+
+	public FriendClotheXML() {
+		super();
+	}  
+
+	public FriendClotheXML(int id, int size) {
+		this.id = id;
+		this.size = size;
+	}
+   
+   public int getId() {
+      return id;
+   }
+
+   public int getSize() {
+      return size;
+   }
 }
