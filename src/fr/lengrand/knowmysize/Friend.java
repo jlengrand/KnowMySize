@@ -13,14 +13,13 @@ import java.util.ArrayList;
  */
 
 public class Friend {
-
-	private static int unknown = 0;
-	private static int man = 1;
-	private static int woman = 2;
+	public static String unknown = "U";
+	public static String man = "M";
+	public static String woman = "F";
 	
 	
 	private String name; 
 	private ArrayList<Clothe> clothes;
-	private int sexe = 0;
+	private String sexe = unknown;
 	private int age;
 }

@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 
 /**
  * Defines the way data about sizes are saved. 
@@ -34,18 +36,20 @@ import org.simpleframework.xml.Root;
  * 		</size> //refers each possible size for this size type.
  * 	</sizetype>
  * 	<sizetype id=2>
- * 		<BASE>XS<BASE>
- * 		<EU>34</EU>
- * 		<RU>40</RU>
- * 		<US>6</US>
+ * 		<size id=1>
+ * 			<BASE>XS<BASE>
+ * 			<EU>34</EU>
+ * 			<RU>40</RU>
+ *	 		<US>6</US>
+ *      </size>
  * 	</sizetype>
  * </sizes>
  *
  */
 
-@Root (name="clothes")
+@Root (name="sizeListing")
 public class SizesListing {
-	private ArrayList<SizeXML> sizes; // XXX: how to handle that?
+	private ArrayList<SizeTypeXML> sizetypes; // XXX: how to handle that?
 	
 	public SizesListing(){
 		super();
@@ -53,22 +57,25 @@ public class SizesListing {
 
 }
 
-@Root (name="clothe")
-class SizeXML{
+
+@Root (name="sizetype")
+class SizeTypeXML{
 	
 	@Attribute(name="id")
 	private int id;
 	
-	@Element(name="name")
-	private String name;
+	private ArrayList<SizeXML> sizes; // XXX: how to handle that?
 	
-	@Element(name="size")
-	private int size;
+}
+
+
+@Root (name="size")
+class SizeXML{
 	
+	@Attribute(name="id")
+	private int id;
+
 	public SizeXML(){
 		super();
 	}
-	
-//	public SizeXML(){
-//	}
 }

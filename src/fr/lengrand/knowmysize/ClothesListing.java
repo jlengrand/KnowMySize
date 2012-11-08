@@ -21,11 +21,13 @@ import org.simpleframework.xml.Root;
  * <clothes>
  * 	<clothe id=1> // each piece of clothe is uniquely defined by its id. 
  * 		<name>top</name> // general name of this type of clothes.
- * 		<size>1</size> //refers to an id in sizes listing. Defines all possible sizes for this precise type of clothe
+ * 		<sizetype>1</sizetype> //refers to an id in sizes listing. Defines all possible sizes for this precise type of clothe
+ * 		<sex>M</sex>
  * 	</clothe>
  * 	<clothe id=2>
  * 		<name>bras</name>
- * 		<size>2</size>
+ * 		<sizetype>2</sizetype>
+ * 		<sex>F</sex>
  * 	</clothe>
  * </clothes>
  *
@@ -38,6 +40,9 @@ public class ClothesListing {
 		super();
 	}
 
+	public ClothesListing(ArrayList<ClotheXML> clothes){
+		this.clothes = clothes;
+	}		
 }
 
 @Root (name="clothe")
@@ -49,16 +54,20 @@ class ClotheXML{
 	@Element(name="name")
 	private String name;
 	
-	@Element(name="size")
-	private int size;
+	@Element(name="sizetype")
+	private int sizetype;
+
+	@Element(name="sexe")
+	private String sexe;	
 	
 	public ClotheXML(){
 		super();
 	}
 	
-	public ClotheXML(int id, String name, int size){
+	public ClotheXML(int id, String name, String sexe, int sizetype){
 		this.id = id;
-		this.size = size;
+		this.sizetype = sizetype;
 		this.name = name;
+		this.sexe = sexe;
 	}
 }
