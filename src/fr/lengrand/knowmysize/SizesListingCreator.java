@@ -134,8 +134,22 @@ public class SizesListingCreator {
 		}
 		sizetypes.add(new SizeTypeXML(underwear_id, underwear_sizes));
 		
-		
 		//socks M 5
+		int m_socks_id = 4;
+		ArrayList<SizeXML> m_socks_sizes = new ArrayList<SizeXML>();
+				//String Base, String EU, String US, String RU, String DE, String UK, String IT, String FR)
+		String m_socks[][] = 
+			{	{null	, "37/38",	"8", "23", 	null, null, null, null}, 
+				{null	, "39/40",	"9", "25", 	null, null, null, null}, 
+				{null	, "41/42",	"10", "27", null, null, null, null}, 
+				{null	, "43/44",	"11", "29", null, null, null, null}, 
+				{null	, "45/46",	"12", "31", null, null, null, null}
+			};
+		for(int i =0; i < m_socks.length; i++){
+			m_socks_sizes.add(new SizeXML(i, m_socks[i][0], m_socks[i][1], m_socks[i][2], m_socks[i][3]));
+		}
+		sizetypes.add(new SizeTypeXML(m_socks_id, m_socks_sizes));
+		
 		//shoes M 6
 		//ladieswear  W 7
 		//bras W 8
