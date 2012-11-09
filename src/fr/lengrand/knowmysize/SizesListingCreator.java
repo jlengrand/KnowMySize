@@ -135,7 +135,7 @@ public class SizesListingCreator {
 		sizetypes.add(new SizeTypeXML(underwear_id, underwear_sizes));
 		
 		//socks M 5
-		int m_socks_id = 4;
+		int m_socks_id = 5;
 		ArrayList<SizeXML> m_socks_sizes = new ArrayList<SizeXML>();
 				//String Base, String EU, String US, String RU, String DE, String UK, String IT, String FR)
 		String m_socks[][] = 
@@ -151,6 +151,30 @@ public class SizesListingCreator {
 		sizetypes.add(new SizeTypeXML(m_socks_id, m_socks_sizes));
 		
 		//shoes M 6
+		int m_shoes_id = 6;
+		ArrayList<SizeXML> m_shoes_sizes = new ArrayList<SizeXML>();
+				//String Base, String EU, String US, String RU, String DE, String UK, String IT, String FR)
+		String m_shoes[][] = 
+			{	{"25"	, "40"	,	"7"		, "39"	, null, null, null, null}, 
+				{"25.5"	, "40.5",	"7.5"	, "39.5", null, null, null, null}, 
+				{"26"	, "41"	,	"8"		, "40"	, null, null, null, null}, 
+				{"26.5"	, "41.5",	"8.5"	, "40.5", null, null, null, null}, 
+				{"27"	, "42"	,	"9"		, "41"	, null, null, null, null},
+				{"27.5"	, "42.5",	"9.5"	, "41.5", null, null, null, null},
+				{"28"	, "43"	,	"10"	, "42"	, null, null, null, null},
+				{"28.5"	, "43.5",	"10.5"	, "42.5", null, null, null, null},
+				{"29"	, "44"	,	"11"	, "43"	, null, null, null, null},
+				{"29.5"	, "44.5",	"11.5"	, "43.5", null, null, null, null},
+				{"30"	, "45"	,	"12"	, "44"	, null, null, null, null},
+				{"31"	, "46"	,	"13"	, "45"	, null, null, null, null},
+				{"32"	, "47"	,	"14"	, "46"	, null, null, null, null},
+				
+			};
+		for(int i =0; i < m_shoes.length; i++){
+			m_shoes_sizes.add(new SizeXML(i, m_shoes[i][0], m_shoes[i][1], m_shoes[i][2], m_shoes[i][3]));
+		}
+		sizetypes.add(new SizeTypeXML(m_shoes_id, m_shoes_sizes));
+		
 		//ladieswear  W 7
 		//bras W 8
 		//lingerie W 9
