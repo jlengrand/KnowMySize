@@ -6,6 +6,7 @@ package fr.lengrand.knowmysize;
 import java.util.ArrayList;
 
 import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 /**
@@ -46,12 +47,21 @@ import org.simpleframework.xml.Root;
 
 @Root (name="sizeListing")
 public class SizesListing {
+
+	@ElementList
 	private ArrayList<SizeTypeXML> sizetypes; // XXX: how to handle that?
 	
 	public SizesListing(){
 		super();
 	}
 
+	public ArrayList<SizeTypeXML> getSizetypes() {
+		return sizetypes;
+	}
+
+	public void setSizetypes(ArrayList<SizeTypeXML> sizetypes) {
+		this.sizetypes = sizetypes;
+	}
 }
 
 
@@ -61,7 +71,24 @@ class SizeTypeXML{
 	@Attribute(name="id")
 	private int id;
 	
+	@ElementList
 	private ArrayList<SizeXML> sizes; // XXX: how to handle that?
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public ArrayList<SizeXML> getSizes() {
+		return sizes;
+	}
+
+	public void setSizes(ArrayList<SizeXML> sizes) {
+		this.sizes = sizes;
+	}
 	
 }
 
@@ -72,6 +99,69 @@ class SizeXML{
 	@Attribute(name="id")
 	private int id;
 
+	@Attribute(required=false)
+	private String BASE;
+
+	@Attribute
+	private String EU;
+	
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+	public String getBASE() {
+		return BASE;
+	}
+
+
+	public void setBASE(String bASE) {
+		BASE = bASE;
+	}
+
+
+	public String getEU() {
+		return EU;
+	}
+
+
+	public void setEU(String eU) {
+		EU = eU;
+	}
+
+
+	public String getRU() {
+		return RU;
+	}
+
+
+	public void setRU(String rU) {
+		RU = rU;
+	}
+
+
+	public String getUS() {
+		return US;
+	}
+
+
+	public void setUS(String uS) {
+		US = uS;
+	}
+
+
+	@Attribute
+	private String RU;
+	
+	@Attribute
+	private String US;
+	
+	
 	public SizeXML(){
 		super();
 	}
