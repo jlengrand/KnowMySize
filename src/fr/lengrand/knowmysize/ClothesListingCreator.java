@@ -63,42 +63,53 @@ public class ClothesListingCreator {
 		//Boolean res =  context.getApplicationContext().deleteFile(XML_FILE);
 		//Log.v(TAG, "clothes removed : " + res);
 
-		//saves file here
-		Serializer serializer = new Persister();
-		ClothesListing cListing = new ClothesListing(clothes);
-		FileOutputStream listing;
-		try {
-			listing = context.getApplicationContext().openFileOutput(XML_FILE, Context.MODE_PRIVATE);
-
-			try{			
-				serializer.write(cListing, listing);
+		// Looks if file already defined
+		String[] files = context.getApplicationContext().fileList();
+		Boolean isDef = false;
+		for(String aFile : files ){
+			if (  aFile.equalsIgnoreCase(XML_FILE)){
+				isDef = true;
+				Log.v(TAG, XML_FILE + " already defined");
 			}
-			catch(Exception e){
-				//Log.e(TAG, "Impossible to write serializer");
-				System.out.println(e);
-			}
-
-
-		} catch (FileNotFoundException e1) {
-			Log.e(TAG, "Problem with file creation");
 		}
 
-		try{
-			//reading back
-			FileInputStream reader = context.getApplicationContext().openFileInput(XML_FILE);
-			int content;
-			while ((content = reader.read()) != -1) {
-				// convert to char and display it
-				Log.v(TAG, Character.toString((char) content));
-			}
-			reader.close();
+		if (!isDef){ // listing does not exist yet
+			Log.v(TAG, "Creating " + XML_FILE);
+			//saves file here
+			Serializer serializer = new Persister();
+			ClothesListing cListing = new ClothesListing(clothes);
+			FileOutputStream listing;
+			try {
+				listing = context.getApplicationContext().openFileOutput(XML_FILE, Context.MODE_PRIVATE);
 
+				try{			
+					serializer.write(cListing, listing);
+				}
+				catch(Exception e){
+					Log.e(TAG, "Impossible to write " + XML_FILE + " " + e);
+				}
+
+
+			} catch (FileNotFoundException e1) {
+				Log.e(TAG, "Impossible to write " + XML_FILE + " " + e1);
+			}
 		}
-		catch(Exception e){
-			Log.e(TAG, "Impossible to read file");
-		}
-		
-		Log.v(TAG, "Finished!");
+//		try{
+//			//reading back
+//			FileInputStream reader = context.getApplicationContext().openFileInput(XML_FILE);
+//			int content;
+//			while ((content = reader.read()) != -1) {
+//				// convert to char and display it
+//				Log.v(TAG, Character.toString((char) content));
+//			}
+//			reader.close();
+//
+//		}
+//		catch(Exception e){
+//			Log.e(TAG, "Impossible to read file");
+//		}
+//
+//		Log.v(TAG, "Finished!");
 	}
 
 }
