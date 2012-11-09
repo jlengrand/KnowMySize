@@ -3,10 +3,9 @@
  */
 package fr.lengrand.knowmysize;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 import org.simpleframework.xml.Serializer;
@@ -26,6 +25,10 @@ public class ClothesListingCreator {
 	private static final String XML_FILE = "l_clothes.xml";
 
 	private Context context;
+
+	public ClothesListingCreator(Context context){
+		this.context = context;
+	}
 
 	public void create(){
 		/*
@@ -56,22 +59,46 @@ public class ClothesListingCreator {
 
 		// Tests if file already exists here 
 
+		// Should only be performed in case of update or reset.
+		//Boolean res =  context.getApplicationContext().deleteFile(XML_FILE);
+		//Log.v(TAG, "clothes removed : " + res);
+
 		//saves file here
 		Serializer serializer = new Persister();
 		ClothesListing cListing = new ClothesListing(clothes);
-		File listing = new File(XML_FILE);
+		FileOutputStream listing;
+		try {
+			listing = context.getApplicationContext().openFileOutput(XML_FILE, Context.MODE_PRIVATE);
 
-		Log.v(TAG, serializer.toString());
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		
+			try{			
+				serializer.write(cListing, listing);
+			}
+			catch(Exception e){
+				//Log.e(TAG, "Impossible to write serializer");
+				System.out.println(e);
+			}
+
+
+		} catch (FileNotFoundException e1) {
+			Log.e(TAG, "Problem with file creation");
+		}
+
 		try{
-			serializer.write(cListing, out);
-			Log.v(TAG, out.toString( "UTF-8" ));	
-			System.out.println(out.toString( "UTF-8" ));	
+			//reading back
+			FileInputStream reader = context.getApplicationContext().openFileInput(XML_FILE);
+			int content;
+			while ((content = reader.read()) != -1) {
+				// convert to char and display it
+				Log.v(TAG, Character.toString((char) content));
+			}
+			reader.close();
+
 		}
 		catch(Exception e){
-			Log.e(TAG, "Impossible to write serializer");
+			Log.e(TAG, "Impossible to read file");
 		}
+		
+		Log.v(TAG, "Finished!");
 	}
 
 }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;
+import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
 /**
@@ -34,8 +35,10 @@ import org.simpleframework.xml.Root;
  */
 @Root (name="clothes")
 public class ClothesListing {
-	private ArrayList<ClotheXML> clothes; // XXX: how to handle that?
 	
+	@ElementList
+	private ArrayList<ClotheXML> clothes; // XXX: how to handle that?
+
 	public ClothesListing(){
 		super();
 	}
@@ -43,6 +46,15 @@ public class ClothesListing {
 	public ClothesListing(ArrayList<ClotheXML> clothes){
 		this.clothes = clothes;
 	}		
+	
+	public ArrayList<ClotheXML> getClothes() {
+		return clothes;
+	}
+
+	public void setClothes(ArrayList<ClotheXML> clothes) {
+		this.clothes = clothes;
+	}
+	
 }
 
 @Root (name="clothe")
@@ -70,4 +82,38 @@ class ClotheXML{
 		this.name = name;
 		this.sexe = sexe;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getSizetype() {
+		return sizetype;
+	}
+
+	public void setSizetype(int sizetype) {
+		this.sizetype = sizetype;
+	}
+	
+	public String getSexe() {
+		return sexe;
+	}
+
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
+	}
+	
+	
 }

@@ -51,7 +51,9 @@ public class MainActivity extends Activity {
 		registerForContextMenu(list);
 		
 		//ugly test
-		ClothesListingCreator clc = new ClothesListingCreator();
+
+		// gotta remove file first
+		ClothesListingCreator clc = new ClothesListingCreator(this.getApplicationContext());
 		clc.create();
 		
 	}
