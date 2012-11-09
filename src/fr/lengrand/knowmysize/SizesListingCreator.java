@@ -102,6 +102,20 @@ public class SizesListingCreator {
 		sizetypes.add(new SizeTypeXML(suits_id, suits_sizes));
 		
 		//shirts M 3
+		int shirts_id = 3;
+		ArrayList<SizeXML> shirts_sizes = new ArrayList<SizeXML>();
+		String shirts[][] = 
+			{	{"S"	, "37-38"	,	"14.5-15"	, "37-38"}, 
+				{"M"	, "39-40"	,	"15.5"		, "39-40"}, 
+				{"L"	, "41-43"	,	"16-17"		, "41-43"}, 
+				{"XL"	, "44"		,	"17.5"		, "44"}, 
+				{"XXL"	, "45"		,	"18"		, "45"}	
+			};
+		for(int i =0; i < shirts.length; i++){
+			shirts_sizes.add(new SizeXML(i, shirts[i][0], shirts[i][1], shirts[i][2], shirts[i][3]));
+		}
+		sizetypes.add(new SizeTypeXML(shirts_id, shirts_sizes));
+		
 		//underwear M 4
 		//socks M 5
 		//shoes M 6
