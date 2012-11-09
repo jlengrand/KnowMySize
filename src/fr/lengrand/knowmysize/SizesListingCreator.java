@@ -86,7 +86,7 @@ public class SizesListingCreator {
 		sizetypes.add(new SizeTypeXML(hats_id, hats_sizes));
 		
 		//suits 2
-		int suits_id = 1;
+		int suits_id = 2;
 		ArrayList<SizeXML> suits_sizes = new ArrayList<SizeXML>();
 		String suits[][] = 
 			{	{"S"	, "46-48",	"36-38"	, "46-48"}, 
@@ -117,6 +117,24 @@ public class SizesListingCreator {
 		sizetypes.add(new SizeTypeXML(shirts_id, shirts_sizes));
 		
 		//underwear M 4
+		int underwear_id = 4;
+		ArrayList<SizeXML> underwear_sizes = new ArrayList<SizeXML>();
+				//String Base, String EU, String US, String RU, String DE, String UK, String IT, String FR)
+		String underwear[][] = 
+			{	{"XS"	, null,	null, "44", "3", "32", null, "2"}, 
+				{"S"	, null,	null, "46", "4", "34", null, "3"}, 
+				{"M"	, null,	null, "48", "5", "36", null, "4"}, 
+				{"L"	, null,	null, "50", "6", "38", null, "5"}, 
+				{"XL"	, null,	null, "52", "7", "40", null, "6"}, 
+				{"XXL"	, null,	null, "54", "8", "42", null, "7"}, 
+				{"XXXL"	, null,	null, "56", "9", "44", null, "8"}
+			};
+		for(int i =0; i < underwear.length; i++){
+			underwear_sizes.add(new SizeXML(i, underwear[i][0], underwear[i][1], underwear[i][2], underwear[i][3]));
+		}
+		sizetypes.add(new SizeTypeXML(underwear_id, underwear_sizes));
+		
+		
 		//socks M 5
 		//shoes M 6
 		//ladieswear  W 7

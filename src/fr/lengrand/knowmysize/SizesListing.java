@@ -122,20 +122,46 @@ class SizeXML{
 	
 	@Attribute(required=false)
 	private String US;
+
+	@Attribute(required=false)
+	private String DE;
 	
+	@Attribute(required=false)
+	private String UK;
+	
+	@Attribute(required=false)
+	private String IT;
+
+	@Attribute(required=false)
+	private String FR;
 	
 	public SizeXML(){
 		super();
 	}
 	
+	public SizeXML(int id, String Base, String EU, String US, String RU, String DE, String UK, String IT, String FR){
+		this.id = id;
+		this.EU = EU;
+		this.US = US;
+		this.RU = RU;
+		this.UK = UK;
+		this.DE = DE;
+		this.IT = IT;
+		this.FR = FR;
+		this.BASE = Base;
+	}
+
 	public SizeXML(int id, String Base, String EU, String US, String RU){
 		this.id = id;
 		this.EU = EU;
 		this.US = US;
 		this.RU = RU;
+		this.UK = null;
+		this.DE = null;
+		this.IT = null;
 		this.BASE = Base;
 	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -145,6 +171,38 @@ class SizeXML{
 		this.id = id;
 	}
 
+
+	public String getFR() {
+		return FR;
+	}
+
+	public void setFR(String fR) {
+		FR = fR;
+	}
+
+	public String getDE() {
+		return DE;
+	}
+
+	public void setDE(String dE) {
+		DE = dE;
+	}
+
+	public String getUK() {
+		return UK;
+	}
+
+	public void setUK(String uK) {
+		UK = uK;
+	}
+
+	public String getIT() {
+		return IT;
+	}
+
+	public void setIT(String iT) {
+		IT = iT;
+	}
 
 	public String getBASE() {
 		return BASE;
