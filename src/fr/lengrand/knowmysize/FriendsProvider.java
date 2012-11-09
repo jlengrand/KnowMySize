@@ -2,6 +2,7 @@ package fr.lengrand.knowmysize;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import android.content.Context;
 import android.util.Log;
@@ -86,12 +87,17 @@ public class FriendsProvider {
 	public String[] getFriends(){
 		String[] friends = context.getApplicationContext().fileList();
 		
+		 Boolean filter_friends = true;
+		
 		// xml filename to friendly name. Parses XML later on
-		String[] new_friends = new String[friends.length];
+		 ArrayList<String> new_friends = new ArrayList<String>();
+		//String[] new_friends = new String[friends.length];
 		for(int i = 0; i < friends.length; i++){
-			new_friends[i] = to_friend_name(friends[i]);
+			if (filter_friends && friends[i].startsWith(marker))
+				//new_friends[i] = to_friend_name(friends[i]);
+				new_friends.add(to_friend_name(friends[i]));
 		}
-		return new_friends;
+		return new_friends.toArray(new String[new_friends.size()]);
 	}
 	
 }
