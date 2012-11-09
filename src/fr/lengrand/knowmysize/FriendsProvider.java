@@ -87,15 +87,20 @@ public class FriendsProvider {
 	public String[] getFriends(){
 		String[] friends = context.getApplicationContext().fileList();
 		
-		 Boolean filter_friends = true;
+		 Boolean filter_friends = false;
 		
 		// xml filename to friendly name. Parses XML later on
 		 ArrayList<String> new_friends = new ArrayList<String>();
-		//String[] new_friends = new String[friends.length];
 		for(int i = 0; i < friends.length; i++){
-			if (filter_friends && friends[i].startsWith(marker))
-				//new_friends[i] = to_friend_name(friends[i]);
+			// TODO: think about reducing that later on
+			if (filter_friends){
+				if (friends[i].startsWith(marker)){ // if file is actually a friend
+					new_friends.add(to_friend_name(friends[i]));
+				}			
+			}
+			else{ // otherwise add everything 
 				new_friends.add(to_friend_name(friends[i]));
+			}
 		}
 		return new_friends.toArray(new String[new_friends.size()]);
 	}
