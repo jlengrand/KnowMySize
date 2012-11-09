@@ -89,19 +89,12 @@ public class SizesListingCreator {
 		int suits_id = 1;
 		ArrayList<SizeXML> suits_sizes = new ArrayList<SizeXML>();
 		String suits[][] = 
-			{	{"XXS"	, null,	 "6.5/8", "53"}, 
-				{"XS"	, null,	"6.3/4"	, "54"}, 
-				{"S"	, null,	"6.7/8"	, "55"}, 
-				{"SM"	, null,	"7"		, "56"}, 
-				{"M"	, null,	"7.1/8"	, "57"}, 
-				{"ML"	, null,	"7.1/4"	, "58"}, 
-				{"L"	, null,	"7.3/8"	, "59"}, 
-				{"L-XL"	, null,	"7.1/2"	, "60"}, 
-				{"XL"	, null,	"7.5/8"	, "61"}, 
-				{"XXL"	, null,	"7.3/4"	, "62"}, 
-				{"XXXL"	, null,	"7.7/8"	, "63"}, 
-				{"4XL"	, null,	"8"		, "64"}, 
-				{"5XL"	, null,	"8.1/8"	, "65"}				
+			{	{"S"	, "46-48",	"36-38"	, "46-48"}, 
+				{"M"	, "48-50",	"38-40"	, "48-50"},  
+				{"L"	, "50-52",	"40-42"	, "50-52"}, 
+				{"XL"	, "52-54",	"42-44"	, "52-54"}, 
+				{"XXL"	, "54-56",	"44-46"	, "54-56"}, 
+				{"XXXL"	, "56-58",	"46-48"	, "56-58"}		
 			};
 		for(int i =0; i < suits.length; i++){
 			suits_sizes.add(new SizeXML(i, suits[i][0], suits[i][1], suits[i][2], suits[i][3]));
