@@ -32,6 +32,7 @@ public class SizesListingCreator {
 
 	public void create(){
 		/*
+		 * EXAMPLE: 
 		 * <sizes>
 		 * 	<sizetype id=1> // each type of size is uniquely defined by its id. Eacg sizetype corresponds to a precise type of clothe
 		 * 		<size id=1>
@@ -57,20 +58,66 @@ public class SizesListingCreator {
 		 * 	</sizetype>
 		 * </sizes>
 		 */
-		
-		//Defines all possibilities 
-		ArrayList<ClotheXML> clothes = new ArrayList<ClotheXML>();
-		clothes.add(new ClotheXML(1, "hats", Friend.man, 1));
-		clothes.add(new ClotheXML(2, "suits", Friend.man, 2));
-		clothes.add(new ClotheXML(3, "shirts", Friend.man, 3));
-		clothes.add(new ClotheXML(4, "underwear", Friend.man, 4));
-		clothes.add(new ClotheXML(5, "socks", Friend.unknown, 5));
-		clothes.add(new ClotheXML(6, "shoes", Friend.woman, 6));
-		clothes.add(new ClotheXML(7, "ladieswear", Friend.woman, 7));
-		clothes.add(new ClotheXML(8, "bras", Friend.woman, 8));
-		clothes.add(new ClotheXML(9, "lingerie", Friend.woman, 9));
-		clothes.add(new ClotheXML(10, "shoes", Friend.woman, 10));
 
+		//-----------
+		//Defines all possibilities 
+		ArrayList<SizeTypeXML> sizetypes = new ArrayList<SizeTypeXML>();		
+		//hats 1
+		int hats_id = 1;
+		ArrayList<SizeXML> hats_sizes = new ArrayList<SizeXML>();
+		String hats[][] = 
+			{	{"XXS"	, null,	 "6.5/8", "53"}, 
+				{"XS"	, null,	"6.3/4"	, "54"}, 
+				{"S"	, null,	"6.7/8"	, "55"}, 
+				{"SM"	, null,	"7"		, "56"}, 
+				{"M"	, null,	"7.1/8"	, "57"}, 
+				{"ML"	, null,	"7.1/4"	, "58"}, 
+				{"L"	, null,	"7.3/8"	, "59"}, 
+				{"L-XL"	, null,	"7.1/2"	, "60"}, 
+				{"XL"	, null,	"7.5/8"	, "61"}, 
+				{"XXL"	, null,	"7.3/4"	, "62"}, 
+				{"XXXL"	, null,	"7.7/8"	, "63"}, 
+				{"4XL"	, null,	"8"		, "64"}, 
+				{"5XL"	, null,	"8.1/8"	, "65"}				
+			};
+		for(int i =0; i < hats.length; i++){
+			hats_sizes.add(new SizeXML(i, hats[i][0], hats[i][1], hats[i][2], hats[i][3]));
+		}
+		sizetypes.add(new SizeTypeXML(hats_id, hats_sizes));
+		
+		//suits 2
+		int suits_id = 1;
+		ArrayList<SizeXML> suits_sizes = new ArrayList<SizeXML>();
+		String suits[][] = 
+			{	{"XXS"	, null,	 "6.5/8", "53"}, 
+				{"XS"	, null,	"6.3/4"	, "54"}, 
+				{"S"	, null,	"6.7/8"	, "55"}, 
+				{"SM"	, null,	"7"		, "56"}, 
+				{"M"	, null,	"7.1/8"	, "57"}, 
+				{"ML"	, null,	"7.1/4"	, "58"}, 
+				{"L"	, null,	"7.3/8"	, "59"}, 
+				{"L-XL"	, null,	"7.1/2"	, "60"}, 
+				{"XL"	, null,	"7.5/8"	, "61"}, 
+				{"XXL"	, null,	"7.3/4"	, "62"}, 
+				{"XXXL"	, null,	"7.7/8"	, "63"}, 
+				{"4XL"	, null,	"8"		, "64"}, 
+				{"5XL"	, null,	"8.1/8"	, "65"}				
+			};
+		for(int i =0; i < suits.length; i++){
+			suits_sizes.add(new SizeXML(i, suits[i][0], suits[i][1], suits[i][2], suits[i][3]));
+		}
+		sizetypes.add(new SizeTypeXML(suits_id, suits_sizes));
+		
+		//shirts M 3
+		//underwear M 4
+		//socks M 5
+		//shoes M 6
+		//ladieswear  W 7
+		//bras W 8
+		//lingerie W 9
+		//shoes 10
+		
+		//-----------
 
 		// Tests if file already exists here 
 
@@ -92,7 +139,7 @@ public class SizesListingCreator {
 			Log.v(TAG, "Creating " + XML_FILE);
 			//saves file here
 			Serializer serializer = new Persister();
-			SizesListing sListing = new SizesListing(sizes);
+			SizesListing sListing = new SizesListing(sizetypes);
 			FileOutputStream listing;
 			try {
 				listing = context.getApplicationContext().openFileOutput(XML_FILE, Context.MODE_PRIVATE);

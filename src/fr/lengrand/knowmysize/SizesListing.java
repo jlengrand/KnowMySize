@@ -55,6 +55,10 @@ public class SizesListing {
 		super();
 	}
 
+	public SizesListing(ArrayList<SizeTypeXML> sizetypes){
+		this.sizetypes = sizetypes;
+	}	
+	
 	public ArrayList<SizeTypeXML> getSizetypes() {
 		return sizetypes;
 	}
@@ -63,7 +67,6 @@ public class SizesListing {
 		this.sizetypes = sizetypes;
 	}
 }
-
 
 @Root (name="sizetype")
 class SizeTypeXML{
@@ -74,6 +77,16 @@ class SizeTypeXML{
 	@ElementList
 	private ArrayList<SizeXML> sizes; // XXX: how to handle that?
 
+	public SizeTypeXML(){
+		super();
+	}
+
+	public SizeTypeXML(int id, ArrayList<SizeXML> sizes){
+		this.id = id;
+		this.sizes = sizes;
+	}
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -92,7 +105,6 @@ class SizeTypeXML{
 	
 }
 
-
 @Root (name="size")
 class SizeXML{
 	
@@ -102,9 +114,28 @@ class SizeXML{
 	@Attribute(required=false)
 	private String BASE;
 
-	@Attribute
+	@Attribute(required=false)
 	private String EU;
 	
+	@Attribute(required=false)
+	private String RU;
+	
+	@Attribute(required=false)
+	private String US;
+	
+	
+	public SizeXML(){
+		super();
+	}
+	
+	public SizeXML(int id, String Base, String EU, String US, String RU){
+		this.id = id;
+		this.EU = EU;
+		this.US = US;
+		this.RU = RU;
+		this.BASE = Base;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -152,17 +183,5 @@ class SizeXML{
 
 	public void setUS(String uS) {
 		US = uS;
-	}
-
-
-	@Attribute
-	private String RU;
-	
-	@Attribute
-	private String US;
-	
-	
-	public SizeXML(){
-		super();
 	}
 }
