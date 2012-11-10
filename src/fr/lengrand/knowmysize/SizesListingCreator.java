@@ -212,7 +212,45 @@ public class SizesListingCreator {
 		sizetypes.add(new SizeTypeXML(bras_id, bras_sizes));
 		
 		//lingerie W 9
+		int lingerie_id = 9;
+		ArrayList<SizeXML> lingerie_sizes = new ArrayList<SizeXML>();
+				// Base,  EU,  US,  RU,  DE,  UK,  IT,  FR)
+		String lingerie[][] = 
+			{   {"XXS"	, null	,	"8"	, "42"	, "36", null, null, "38"}, 
+				{"XS"	, null	,	"10", "44"	, "38", null, null, "40"}, 
+				{"S"	, null	,	"12", "46"	, "40", null, null, "42"}, 
+				{"M"	, null	,	"14", "48"	, "42", null, null, "44"}, 
+				{"L"	, null	,	"16", "50"	, "44", null, null, "46"}, 
+				{"XL"	, null	,	"18", "50"	, "46", null, null, "48"}, 
+				{"XXL"	, null	,	"20", "54"	, "48", null, null, "50"}, 
+				{"XXXL"	, null	,	"22", "56"	, "50", null, null, "52"}
+			};
+		for(int i =0; i < lingerie.length; i++){
+			lingerie_sizes.add(new SizeXML(i, lingerie[i][0], lingerie[i][1], lingerie[i][2], lingerie[i][3]));
+		}
+		sizetypes.add(new SizeTypeXML(lingerie_id, lingerie_sizes));
+		
 		//shoes 10
+		int w_shoes_id = 6;
+		ArrayList<SizeXML> w_shoes_sizes = new ArrayList<SizeXML>();
+				//String Base, String EU, String US, String RU, String DE, String UK, String IT, String FR)
+		String w_shoes[][] = 
+			{	{"21.5"	, "35"	,	"5"		, "34"	, null, "2.5"	, null, null}, 
+				{"22"	, "35.5",	"5.5"	, "34.5", null, "3"		, null, null}, 
+				{"22.5"	, "36"	,	"6"		, "35"	, null, "3.5"	, null, null}, 
+				{"23"	, "36.5",	"6.5"	, "35.5", null, "4"		, null, null}, 
+				{"23.5"	, "37"	,	"7"		, "36"	, null, "4.5"	, null, null},
+				{"24"	, "37.5",	"7.5"	, "36.5", null, "5"		, null, null},
+				{"24.5"	, "38"	,	"8"		, "37"	, null, "5.5"	, null, null},
+				{"25"	, "38.5",	"8.5"	, "37.5", null, "6"		, null, null},
+				{"25.5"	, "39"	,	"9"		, "38"	, null, "6.5"	, null, null},
+				{"26"	, "39.5",	"9.5"	, "38.5", null, "7"		, null, null},
+				
+			};
+		for(int i =0; i < w_shoes.length; i++){
+			w_shoes_sizes.add(new SizeXML(i, w_shoes[i][0], w_shoes[i][1], w_shoes[i][2], w_shoes[i][3]));
+		}
+		sizetypes.add(new SizeTypeXML(w_shoes_id, w_shoes_sizes));
 		
 		//-----------
 
