@@ -176,7 +176,41 @@ public class SizesListingCreator {
 		sizetypes.add(new SizeTypeXML(m_shoes_id, m_shoes_sizes));
 		
 		//ladieswear  W 7
+		int ladieswear_id = 7;
+		ArrayList<SizeXML> ladieswear_sizes = new ArrayList<SizeXML>();
+				// Base,  EU,  US,  RU,  DE,  UK,  IT,  FR)
+		String ladieswear[][] = 
+			{	{"XS"	, "34-36"	,	"6-8"	, "40-42"	, null, null, null, null}, 
+				{"S"	, "38"		,	"10"	, "44"		, null, null, null, null}, 
+				{"M"	, "40-42"	,	"12-14"	, "46-48"	, null, null, null, null}, 
+				{"L"	, "44"		,	"16"	, "50"		, null, null, null, null}, 
+				{"XL"	, "46-48"	,	"18-20"	, "52-54"	, null, null, null, null}, 
+				{"XXL"	, "50"		,	"22"	, "56"		, null, null, null, null}, 
+				{"XXXL"	, "52"		,	"24"	, "58"		, null, null, null, null}
+			};
+		for(int i =0; i < ladieswear.length; i++){
+			ladieswear_sizes.add(new SizeXML(i, ladieswear[i][0], ladieswear[i][1], ladieswear[i][2], ladieswear[i][3]));
+		}
+		sizetypes.add(new SizeTypeXML(ladieswear_id, ladieswear_sizes));		
+		
 		//bras W 8
+		int bras_id = 8;
+		ArrayList<SizeXML> bras_sizes = new ArrayList<SizeXML>();
+				// Base,  EU,  US,  RU,  DE,  UK,  IT,  FR)
+		String bras[][] = 
+			{	{null	, "65"	,	"30"	, null	, null, "30", "1", "80"	}, 
+				{null	, "70"	,	"32"	, null	, null, "32", "2", "85"	}, 
+				{null	, "75"	,	"34"	, null	, null, "34", "3", "90"	}, 
+				{null	, "80"	,	"36"	, null	, null, "36", "4", "95"	}, 
+				{null	, "85"	,	"38"	, null	, null, "38", "5", "100"}, 
+				{null	, "90"	,	"40"	, null	, null, "40", "6", "105"}, 
+				{null	, "95"	,	"42"	, null	, null, "42", "7", "110"}
+			};
+		for(int i =0; i < bras.length; i++){
+			bras_sizes.add(new SizeXML(i, bras[i][0], bras[i][1], bras[i][2], bras[i][3]));
+		}
+		sizetypes.add(new SizeTypeXML(bras_id, bras_sizes));
+		
 		//lingerie W 9
 		//shoes 10
 		
