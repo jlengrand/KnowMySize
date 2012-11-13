@@ -50,11 +50,11 @@ public class MainActivity extends Activity {
 
 		registerForContextMenu(list);
 		
-		//ugly test
-
-		// gotta remove file first
+		//Adding listings
 		ClothesListingCreator clc = new ClothesListingCreator(this.getApplicationContext());
 		clc.create();
+		SizesListingCreator slc = new SizesListingCreator(this.getApplicationContext());
+		slc.create();
 		
 	}
 

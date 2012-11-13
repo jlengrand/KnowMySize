@@ -87,7 +87,7 @@ public class FriendsProvider {
 	public String[] getFriends(){
 		String[] friends = context.getApplicationContext().fileList();
 		
-		 Boolean filter_friends = false;
+		 Boolean filter_friends = true;
 		
 		// xml filename to friendly name. Parses XML later on
 		 ArrayList<String> new_friends = new ArrayList<String>();

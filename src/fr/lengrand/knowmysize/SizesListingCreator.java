@@ -291,22 +291,6 @@ public class SizesListingCreator {
 				Log.e(TAG, "Impossible to write " + XML_FILE + " " + e1);
 			}
 		}
-		//		try{
-		//			//reading back
-		//			FileInputStream reader = context.getApplicationContext().openFileInput(XML_FILE);
-		//			int content;
-		//			while ((content = reader.read()) != -1) {
-		//				// convert to char and display it
-		//				Log.v(TAG, Character.toString((char) content));
-		//			}
-		//			reader.close();
-		//
-		//		}
-		//		catch(Exception e){
-		//			Log.e(TAG, "Impossible to read file");
-		//		}
-		//
-		//		Log.v(TAG, "Finished!");
 	}
 
 }

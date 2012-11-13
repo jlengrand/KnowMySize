@@ -6,6 +6,7 @@ package fr.lengrand.knowmysize;
 import java.util.ArrayList;
 
 import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
@@ -111,28 +112,28 @@ class SizeXML{
 	@Attribute(name="id")
 	private int id;
 
-	@Attribute(required=false)
+	@Element(required=false)
 	private String BASE;
 
-	@Attribute(required=false)
+	@Element(required=false)
 	private String EU;
 	
-	@Attribute(required=false)
+	@Element(required=false)
 	private String RU;
 	
-	@Attribute(required=false)
+	@Element(required=false)
 	private String US;
 
-	@Attribute(required=false)
+	@Element(required=false)
 	private String DE;
 	
-	@Attribute(required=false)
+	@Element(required=false)
 	private String UK;
 	
-	@Attribute(required=false)
+	@Element(required=false)
 	private String IT;
 
-	@Attribute(required=false)
+	@Element(required=false)
 	private String FR;
 	
 	public SizeXML(){
