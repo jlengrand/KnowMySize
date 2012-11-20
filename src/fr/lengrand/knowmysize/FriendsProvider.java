@@ -30,7 +30,7 @@ public class FriendsProvider {
 	 * @return
 	 */
 	private String format(String name){
-		return name.replace(" ", "_");
+		return name.trim().replace(" ", "_");
 	}
 	
 	/** Creates a filename given the name of the new friend to add. 
@@ -39,6 +39,7 @@ public class FriendsProvider {
 	 * @return
 	 */
 	private String to_xml_filename(String name){
+		
 		return marker + format(name) + extension;
 	}
 	

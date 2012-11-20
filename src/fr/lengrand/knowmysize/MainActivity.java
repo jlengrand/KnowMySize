@@ -80,6 +80,8 @@ public class MainActivity extends Activity {
 			for (int i = 0; i<menuItems.length; i++) {
 				menu.add(Menu.NONE, i, i, menuItems[i]); // set items in List
 			}
+			
+			Log.v(TAG, "Event on list of friends !");
 		}
 		else if(v.getId() == R.id.add_button){
 
