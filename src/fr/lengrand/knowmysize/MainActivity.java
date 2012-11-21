@@ -16,6 +16,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
+
 
 public class MainActivity extends Activity {
 	private static final String TAG = "MainActivity";
@@ -48,6 +50,16 @@ public class MainActivity extends Activity {
 		ListView list = (ListView) findViewById(R.id.friendList);
 		list.setAdapter(adapter);
 
+		// Create simple click on friends interaction
+		list.setOnItemClickListener( new OnItemClickListener() {
+		    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+		        //Intent i = new Intent(MainActivity.this,CourtDetailActivity.class);
+		        //startActivity(i);
+		    	Log.v(TAG, "small click!");
+		    }
+		}	);	
+		
+		
 		registerForContextMenu(list);
 		
 		//Adding listings
